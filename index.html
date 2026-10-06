@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#8ec5fc">
+  <link rel="manifest" href="manifest.json">
+  <title>教師節快樂!</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "PingFang TC", "Microsoft JhengHei", sans-serif;
+      background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .card {
+      background-color: #ffffff;
+      border-radius: 20px;
+      padding: 40px 30px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      text-align: center;
+      max-width: 450px;
+      width: 100%;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .icon {
+      font-size: 64px;
+      margin-bottom: 15px;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    h1 {
+      color: #333333;
+      font-size: 28px;
+      margin-bottom: 15px;
+    }
+
+    p {
+      color: #666666;
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 25px;
+    }
+
+    .btn {
+      background: linear-gradient(45deg, #ff758c, #ff7eb3);
+      color: white;
+      border: none;
+      padding: 12px 28px;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(255, 117, 140, 0.4);
+      transition: all 0.2s ease;
+    }
+
+    .btn:hover {
+      opacity: 0.9;
+      transform: scale(1.05);
+    }
+
+    .message {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #4a90e2;
+      min-height: 27px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="icon">🧑‍🏫🍎📚</div>
+    <h1>教師節快樂!</h1>
+    <p>感謝您的用心教導與無私付出,<br>讓我們在學習的路上勇敢前行。</p>
+    <button class="btn" id="thanksBtn">送上感謝</button>
+    <div class="message" id="message"></div>
+  </div>
+
+  <script>
+    const messages = [
+      "謝謝老師的辛勞!",
+      "您是我們心中最棒的老師!",
+      "老師,您辛苦了!",
+      "感恩有您,教師節快樂!"
+    ];
+    let index = 0;
+
+    document.getElementById("thanksBtn").addEventListener("click", () => {
+      document.getElementById("message").textContent = messages[index];
+      index = (index + 1) % messages.length;
+    });
+
+    // 註冊 Service Worker
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./sw.js");
+      });
+    }
+  </script>
+</body>
+</html>
